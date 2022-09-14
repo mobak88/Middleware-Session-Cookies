@@ -1,0 +1,23 @@
+{
+  "name": "lesson-four",
+  "version": "1.0.0",
+  "description": "Server that stores usernames",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mobak88/Middleware-Session-Cookies.git"
+  },
+  "author": "Mustafa Baker",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mobak88/Middleware-Session-Cookies/issues"
+  },
+  "homepage": "https://github.com/mobak88/Middleware-Session-Cookies#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
