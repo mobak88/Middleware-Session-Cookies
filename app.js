@@ -32,22 +32,21 @@ app.use(express.static(__dirname + '/public'));
 app.get('/', (req, res) => {
     const { loggedIn } = req.cookies;
     console.log('Cookie: ', typeof loggedIn);
-    if (loggedIn === 'true') {
+    if (user.loggedIn === true) {
         console.log('true');
         res.sendFile(path.join(__dirname, '/views/user.html'));
-    } else if (loggedIn === 'false') {
+    } else if (user.loggedIn === false) {
         console.log('False');
         res.sendFile(path.join(__dirname, '/views/index.html'));
     }
 });
 
 app.get('/user', (req, res) => {
-    const { loggedIn } = req.cookies;
     console.log(req.cookies);
-    if (loggedIn === 'true') {
+    if (user.loggedIn === true) {
         console.log('Cookie: ', req.cookies);
         res.sendFile(path.join(__dirname, '/views/user.html'));
-    } else if (loggedIn === 'false') {
+    } else if (user.loggedIn === false) {
         console.log('User false');
         res.redirect('/');
     }
