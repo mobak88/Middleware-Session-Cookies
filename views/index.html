@@ -7,14 +7,17 @@
     <title>Login</title>
   </head>
   <body>
-    <h1>Login</h1>
-    <form>
-      <label for="username">Username</label>
-      <input id="username" type="text" />
-      <label for="password">Password</label>
-      <input id="password" type="text" />
-      <button class="login-btn">Login</button>
+    <h1>Hello unknown user</h1>
+    <form action="/user" method="post">
+      <div>
+        <label for="username">Username</label>
+        <input id="username" type="text" name="username" />
+      </div>
+      <div>
+        <label for="password">Password</label>
+        <input id="password" type="text" name="password" />
+      </div>
+      <button type="submit" class="login-btn">Login</button>
     </form>
-    <script src="scripts/index.js"></script>
   </body>
 </html>
