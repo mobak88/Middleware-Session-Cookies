@@ -30,24 +30,24 @@ app.use(session({
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', (req, res) => {
-    const loggedIn = req.cookies.loggedIn;
+    const { loggedIn } = req.cookies;
     console.log('Cookie: ', typeof loggedIn);
     if (loggedIn === 'true') {
         console.log('true');
         res.sendFile(path.join(__dirname, '/views/user.html'));
-    } else {
+    } else if (loggedIn === 'false') {
         console.log('False');
         res.sendFile(path.join(__dirname, '/views/index.html'));
     }
 });
 
 app.get('/user', (req, res) => {
-    const loggedIn = req.cookies;
+    const { loggedIn } = req.cookies;
     console.log(req.cookies);
-    if (loggedIn === true) {
+    if (loggedIn === 'true') {
         console.log('Cookie: ', req.cookies);
         res.sendFile(path.join(__dirname, '/views/user.html'));
-    } else {
+    } else if (loggedIn === 'false') {
         console.log('User false');
         res.redirect('/');
     }
@@ -66,11 +66,11 @@ app.post('/user', (req, res) => {
         console.log(req.body);
         user.loggedIn = true;
         res.cookie('loggedIn', user.loggedIn, { maxAge: 6000000000, httpOnly: true, secure: false });
-        res.sendFile(path.join(__dirname, '/views/user.html'));
+        res.redirect('/user');
     } else {
         console.log('Wrong username or password');
         console.log(req.body);
-        res.sendFile(path.join(__dirname, '/views/index.html'));
+        res.redirect('/');
     }
 });
 
