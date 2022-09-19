@@ -30,7 +30,9 @@ app.use(session({
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', (req, res) => {
-    if (req.cookies.loggedIn === true) {
+    const loggedIn = req.cookies.loggedIn;
+    console.log('Cookie: ', typeof loggedIn);
+    if (loggedIn === 'true') {
         console.log('true');
         res.sendFile(path.join(__dirname, '/views/user.html'));
     } else {
@@ -41,10 +43,12 @@ app.get('/', (req, res) => {
 
 app.get('/user', (req, res) => {
     const loggedIn = req.cookies;
+    console.log(req.cookies);
     if (loggedIn === true) {
         console.log('Cookie: ', req.cookies);
         res.sendFile(path.join(__dirname, '/views/user.html'));
     } else {
+        console.log('User false');
         res.redirect('/');
     }
 });
@@ -54,7 +58,7 @@ app.post('/user', (req, res) => {
     if (username === user.username && password === user.password) {
         console.log(req.body);
         user.loggedIn = true;
-        res.cookie('loggedIn', user.loggedIn, { maxAge: 600000, httpOnly: true, secure: false });
+        res.cookie('loggedIn', user.loggedIn, { maxAge: 6000000000, httpOnly: true, secure: false });
         res.sendFile(path.join(__dirname, '/views/user.html'));
     } else {
         console.log('Wrong username or password');
