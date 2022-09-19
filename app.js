@@ -53,6 +53,13 @@ app.get('/user', (req, res) => {
     }
 });
 
+app.post('/', (req, res) => {
+    console.log(req.body);
+    user.loggedIn = false;
+    res.cookie('loggedIn', user.loggedIn, { maxAge: 6000000000, httpOnly: true, secure: false });
+    res.redirect('/');
+});
+
 app.post('/user', (req, res) => {
     const { username, password } = req.body;
     if (username === user.username && password === user.password) {
